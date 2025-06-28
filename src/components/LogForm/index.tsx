@@ -15,6 +15,7 @@ import {
 	exercisesOptions,
 	setOptions,
 } from "@/utils/constants";
+import type { SetDetails } from "@/types/LogFormTypes";
 
 const LogForm = () => {
 	const validationSchema = Yup.object({
@@ -23,7 +24,7 @@ const LogForm = () => {
 		sets: Yup.number().required("sets_is_required"),
 	});
 
-	const setDetail = {
+	const setDetail: SetDetails = {
 		setNumber: undefined,
 		weight: undefined,
 		reps: undefined,
@@ -129,14 +130,19 @@ const LogForm = () => {
 													value={exercise.sets}
 													onValueChange={(value) => {
 														setFieldValue(`exercise.${index}.sets`, value);
-														const setDetails =  [];
+														const setDetails: SetDetails[] = [];
 														Array.from({ length: Number(value) }).forEach(
 															(_, i) => {
-																setDetails.push({...setDetail, setNumber: i + 1})
-
+																setDetails.push({
+																	...setDetail,
+																	setNumber: i + 1,
+																});
 															}
 														);
-														setFieldValue(`exercises.${index}.setDetails`, setDetails);
+														setFieldValue(
+															`exercises.${index}.setDetails`,
+															setDetails
+														);
 													}}
 												>
 													<SelectTrigger className='w-[200px]'>
@@ -164,11 +170,11 @@ const LogForm = () => {
 													<div>
 														{exercise.setDetails.map((set, setIndex) => {
 															return (
-																<div className="flex gap-4" key={setIndex}>
+																<div className='flex gap-4' key={setIndex}>
 																	<div className='flex'>
 																		<Input
 																			type='number'
-																			name={set.weight}
+																			name={String(setDetail.weight)}
 																			placeholder='weight'
 																			className='w-[100px]'
 																			min={1}
