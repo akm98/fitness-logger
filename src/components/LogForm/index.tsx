@@ -168,7 +168,7 @@ const LogForm = () => {
 											<FieldArray name={`exercises.${index}.setDetails`}>
 												{() => (
 													<div>
-														{exercise.setDetails.map((set, setIndex) => {
+														{exercise.setDetails.map((_, setIndex) => {
 															return (
 																<div className='flex gap-4' key={setIndex}>
 																	<div className='flex'>
