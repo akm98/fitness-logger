@@ -1,0 +1,59 @@
+[
+  {
+    "date": "2025-06-28",
+    "bodyPart": "Legs",
+    "exercises": [
+      {
+        "name": "Squats",
+        "sets": [
+          {
+            "setNumber": 1,
+            "weight": 60,
+            "weightMetric": "kg",
+            "reps": 12
+          },
+          {
+            "setNumber": 2,
+            "weight": 65,
+            "weightMetric": "kg",
+            "reps": 10
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "setNumber": 1,
+            "weight": 120,
+            "weightMetric": "kg",
+            "reps": 10
+          },
+          {
+            "setNumber": 2,
+            "weight": 130,
+            "weightMetric": "kg",
+            "reps": 8
+          }
+        ]
+      },
+      {
+        "name": "Leg Extension",
+        "sets": [
+          {
+            "setNumber": 1,
+            "weight": 30,
+            "weightMetric": "kg",
+            "reps": 15
+          },
+          {
+            "setNumber": 2,
+            "weight": 35,
+            "weightMetric": "kg",
+            "reps": 12
+          }
+        ]
+      }
+    ]
+  }
+]
