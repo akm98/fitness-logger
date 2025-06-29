@@ -3,23 +3,17 @@ import { useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 // import "ag-grid-community/styles/ag-grid.css";
 // import "ag-grid-community/styles/ag-theme-alpine.css";
-import dummyData from "../../data/logTableData.json";
+import { logTableData } from "../../data/logTableData.ts";
 import type { WorkoutData } from "@/types/LogTableTypes";
 import type { ColDef } from "ag-grid-community";
+import { LogTableColumnDefs } from "@/utils/constants.ts";
 
-const LogTable = () => {
-	const [rowData] = useState<WorkoutData[]>(dummyData as WorkoutData[]);
-
-	const colDefs: ColDef<WorkoutData>[] = [
-		{ field: "date", headerName: "date", sortable: true, filter: true },
-		{
-			field: "bodyPart",
-			headerName: "exercises",
-			sortable: true,
-			filter: true,
-		},
-	];
-
+interface Props {
+	data: WorkoutData[];
+}
+const LogTable = ({ data }: Props) => {
+	const [rowData] = useState<WorkoutData[]>([...data, ...logTableData]);
+	
 	const defaultColDef: ColDef = {
 		flex: 1,
 	};
@@ -27,7 +21,7 @@ const LogTable = () => {
 		<div style={{ width: "100%", height: "50vh" }}>
 			<AgGridReact
 				rowData={rowData}
-				columnDefs={colDefs}
+				columnDefs={LogTableColumnDefs}
 				defaultColDef={defaultColDef}
 			/>
 		</div>

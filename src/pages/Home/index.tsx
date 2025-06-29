@@ -2,10 +2,12 @@ import LogForm from "@/components/LogForm";
 import LogTable from "@/components/LogTable";
 import Show, { Else, If } from "@/components/Show";
 import { Button } from "@/components/ui/button";
+import type { WorkoutData } from "@/types/LogTableTypes";
 import { useState } from "react";
 
 const Home = () => {
 	const [showFitnessLog, setShowFitnessLog] = useState(false);
+	const [logData, setLogData] = useState<WorkoutData[]>([]);
 	return (
 		<div className='p-4 space-y-6 w-full border-2'>
 			<div className='flex items-center-safe justify-between w-full border-2'>
@@ -25,10 +27,10 @@ const Home = () => {
 
 			<Show condition={showFitnessLog}>
 				<If>
-					<LogTable />
+					<LogTable data={logData}/>
 				</If>
 				<Else>
-					<LogForm />
+					<LogForm setFormValues={setLogData}/>
 				</Else>
 			</Show>
 		</div>
