@@ -70,6 +70,7 @@ const LogForm = ({ setFormValues }: Props) => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
+				console.log("Form submitted with values:", values);
         setFormValues((prev: WorkoutData[]) => [
           ...prev,
           values as WorkoutData,

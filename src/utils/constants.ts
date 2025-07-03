@@ -29,13 +29,23 @@ export const exercisesOptions = [
     bodyPart: "Chest Shoulders Triceps",
   },
   {
+    label: "Inclined Bench Press",
+    value: "Inclined Bench Press",
+    bodyPart: "Chest Shoulders Triceps",
+  },
+  {
     label: "Overhead Press",
     value: "Overhead Press",
     bodyPart: "Chest Shoulders Triceps",
   },
   {
-    label: "Tricep Dips",
-    value: "Tricep Dips",
+    label: "Lateral Raises",
+    value: "Lateral Raises",
+    bodyPart: "Chest Shoulders Triceps",
+  },
+  {
+    label: "Tricep Pushdown",
+    value: "Tricep Pushdown",
     bodyPart: "Chest Shoulders Triceps",
   },
   { label: "Bicep Curls", value: "Bicep Curls", bodyPart: "Back Biceps" },

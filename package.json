@@ -13,12 +13,14 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.32.3",
     "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/vite": "^4.1.11",
     "ag-grid-community": "^34.0.0",
     "ag-grid-react": "^34.0.0",
+    "appwrite": "^18.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

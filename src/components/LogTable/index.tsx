@@ -35,7 +35,7 @@ const LogTable = () => {
   }, []);
 
   return (
-    <div style={{ width: "100%", height: "50vh" }} className=" borders-b-2">
+    <div style={{ width: "100%", height: "80vh" }} className=" borders-b-2">
       <AgGridReact
         rowData={rowData}
         columnDefs={LogTableColumnDefs}
