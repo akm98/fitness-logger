@@ -1,15 +1,19 @@
- 
-import './App.css'
-import Home from './pages/Home' 
+import "./App.css";
+import Home from "./pages/Home";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
-  
+	const queryClient = new QueryClient();
 
-  return (
-    <> 
-      <Home />  
-    </>
-  )
+	return (
+		<QueryClientProvider client={queryClient}>
+			<Home />
+			<Toaster />
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
+	);
 }
 
-export default App
+export default App;

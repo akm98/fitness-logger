@@ -2,6 +2,7 @@ export interface WorkoutData {
   date: Date | string; // e.g., "2025-06-28"
   bodyPart: string; // e.g., "Legs", "Back", "Chest and Shoulders"
   exercises: Exercise[];
+  user: unknown
 }
 
 export interface Exercise {

@@ -24,5 +24,6 @@
     "submit": "Submit",
     "weight": "Weight",
     "reps": "Reps",
-    "sign_in": "Sign In"
+    "sign_in": "Sign In",
+    "workout_created_successfully": "Workout created successfully"
 }
