@@ -97,7 +97,6 @@ export const exercisesOptions = [
 		value: "Cable Tricep Extensions",
 		bodyPart: "Chest Shoulders Triceps",
 	},
-	{ label: "Hammer Curls", value: "Hammer Curls", bodyPart: "Back Biceps" },
 	{ label: "Calf Raises", value: "Calf Raises", bodyPart: "Legs" },
 	{ label: "Plank", value: "Plank", bodyPart: "Core" },
 	{ label: "Russian Twists", value: "Russian Twists", bodyPart: "Core" },

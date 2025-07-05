@@ -1,4 +1,11 @@
-import { Field, FieldArray, Form, Formik, type FieldProps } from "formik";
+import {
+	ErrorMessage,
+	Field,
+	FieldArray,
+	Form,
+	Formik,
+	type FieldProps,
+} from "formik";
 import {
 	Select,
 	SelectTrigger,
@@ -38,13 +45,13 @@ const WorkoutForm = () => {
 	});
 
 	if (isSuccess) {
-		toast(t("workout_created_successfully"));
+		toast.success(t("workout_created_successfully"));
 	}
 	if (error) {
 		toast.error(t("error_creating_workout"));
 	}
 	if (isPending) {
-		toast.loading(t("creating_workout"));
+		toast.info(t("creating_workout"));
 	}
 	return (
 		<Formik
@@ -107,11 +114,11 @@ const WorkoutForm = () => {
 										))}
 									</SelectContent>
 								</Select>
-								{touched.bodyPart && errors.bodyPart && (
-									<span className='text-red-500 text-xs'>
-										{errors.bodyPart}
-									</span>
-								)}
+								<ErrorMessage
+									component='p'
+									className='text-red-500 text-xs'
+									name={"bodyPart"}
+								/>
 							</div>
 							<Button type='submit'>{t("submit")}</Button>
 						</div>
@@ -126,108 +133,128 @@ const WorkoutForm = () => {
 													className='flex items-center space-y-4'
 													key={index}
 												>
-													<Select
-														value={exercise.name}
-														onValueChange={(value) =>
-															setFieldValue(`exercises.${index}.name`, value)
-														}
-													>
-														<SelectTrigger className='w-[200px]'>
-															<SelectValue
-																placeholder={t("select_exercises")}
-															/>
-														</SelectTrigger>
-														<SelectContent>
-															{filteredExercisesOptions.map((opt) => (
-																<SelectItem
-																	key={opt.value}
-																	value={`${opt.value}`}
-																>
-																	{opt.label}
-																</SelectItem>
-															))}
-														</SelectContent>
-													</Select>
-													{touched.bodyPart && errors.bodyPart && (
-														<span className='text-red-500 text-xs'>
-															{errors.bodyPart}
-														</span>
-													)}
-													<div className='flex mx-4'>
-														<Select
-															value={String(exercise.sets ?? "")}
-															onValueChange={(value) => {
-																setFieldValue(
-																	`exercises.${index}.sets`,
-																	Number(value)
-																);
-																const setDetails: SetData[] = [];
-																Array.from({ length: Number(value) }).forEach(
-																	(_, i) => {
-																		setDetails.push({
-																			...setDetail,
-																			setNumber: i + 1,
-																		});
+													<Field name={`exercises.${index}.name`}>
+														{({ field }: FieldProps) => (
+															<div>
+																<Select
+																	value={exercise.name}
+																	onValueChange={(value) =>
+																		setFieldValue(
+																			`exercises.${index}.name`,
+																			value
+																		)
 																	}
-																);
-																setFieldValue(
-																	`exercises.${index}.setDetails`,
-																	setDetails
-																);
-															}}
-														>
-															<SelectTrigger className='w-[150px]'>
-																<SelectValue placeholder={t("select_sets")} />
-															</SelectTrigger>
-															<SelectContent>
-																{setOptions.map((opt) => (
-																	<SelectItem
-																		key={opt.value}
-																		value={`${opt.value}`}
-																	>
-																		{opt.label}
-																	</SelectItem>
-																))}
-															</SelectContent>
-														</Select>
-														{touched.bodyPart && errors.bodyPart && (
-															<span className='text-red-500 text-xs'>
-																{errors.bodyPart}
-															</span>
-														)}
-													</div>
-													<div className='flex mr-4'>
-														<Select
-															value={exercise.weightMetric}
-															onValueChange={(value) => {
-																setFieldValue(
-																	`exercises.${index}.weightMetric`,
-																	value
-																);
-															}}
-														>
-															<SelectTrigger className='w-[100px]'>
-																<SelectValue
-																	placeholder={t("select_weight_metric")}
+																>
+																	<SelectTrigger className='w-[200px]'>
+																		<SelectValue
+																			placeholder={t("select_exercises")}
+																		/>
+																	</SelectTrigger>
+																	<SelectContent>
+																		{filteredExercisesOptions.map((opt) => (
+																			<SelectItem
+																				key={opt.value}
+																				value={`${opt.value}`}
+																			>
+																				{opt.label}
+																			</SelectItem>
+																		))}
+																	</SelectContent>
+																</Select>
+																<ErrorMessage
+																	component='p'
+																	className='text-red-500 text-xs'
+																	name={field.name}
 																/>
-															</SelectTrigger>
-															<SelectContent>
-																{weightMetricOptions.map((opt) => (
-																	<SelectItem
-																		key={opt.value}
-																		value={`${opt.value}`}
-																	>
-																		{opt.label}
-																	</SelectItem>
-																))}
-															</SelectContent>
-														</Select>
-														{touched.bodyPart && errors.bodyPart && (
-															<span className='text-red-500 text-xs'>
-																{errors.bodyPart}
-															</span>
+															</div>
 														)}
-													</div>
+													</Field>
+													<Field name={`exercises.${index}.sets`}>
+														{({ field }: FieldProps) => (
+															<div className='mx-4'>
+																<Select
+																	value={String(exercise.sets ?? "")}
+																	onValueChange={(value) => {
+																		setFieldValue(
+																			`exercises.${index}.sets`,
+																			Number(value)
+																		);
+																		const setDetails: SetData[] = [];
+																		Array.from({
+																			length: Number(value),
+																		}).forEach((_, i) => {
+																			setDetails.push({
+																				...setDetail,
+																				setNumber: i + 1,
+																			});
+																		});
+																		setFieldValue(
+																			`exercises.${index}.setDetails`,
+																			setDetails
+																		);
+																	}}
+																>
+																	<SelectTrigger className='w-[150px]'>
+																		<SelectValue
+																			placeholder={t("select_sets")}
+																		/>
+																	</SelectTrigger>
+																	<SelectContent>
+																		{setOptions.map((opt) => (
+																			<SelectItem
+																				key={opt.value}
+																				value={`${opt.value}`}
+																			>
+																				{opt.label}
+																			</SelectItem>
+																		))}
+																	</SelectContent>
+																</Select>
+																<ErrorMessage
+																	component='p'
+																	className='text-red-500 text-xs'
+																	name={field.name}
+																/>
+															</div>
+														)}
+													</Field>
+													<Field name={`exercises.${index}.weightMetric`}>
+														{({ field }: FieldProps) => (
+															<div className='flex mr-4'>
+																<Select
+																	value={exercise.weightMetric}
+																	onValueChange={(value) => {
+																		setFieldValue(
+																			`exercises.${index}.weightMetric`,
+																			value
+																		);
+																	}}
+																>
+																	<SelectTrigger className='w-[100px]'>
+																		<SelectValue
+																			placeholder={t("select_weight_metric")}
+																		/>
+																	</SelectTrigger>
+																	<SelectContent>
+																		{weightMetricOptions.map((opt) => (
+																			<SelectItem
+																				key={opt.value}
+																				value={`${opt.value}`}
+																			>
+																				{opt.label}
+																			</SelectItem>
+																		))}
+																	</SelectContent>
+																</Select>
+																<ErrorMessage
+																	component='p'
+																	className='text-red-500 text-xs'
+																	name={field.name}
+																/>
+															</div>
+														)}
+													</Field>
+
 													<FieldArray name={`exercises.${index}.setDetails`}>
 														{() => (
 															<div>
@@ -238,7 +265,7 @@ const WorkoutForm = () => {
 																				<Field
 																					name={`exercises.${index}.setDetails.${setIndex}.weight`}
 																				>
-																					{({ field, meta }: FieldProps) => {
+																					{({ field }: FieldProps) => {
 																						return (
 																							<div>
 																								<Input
@@ -248,11 +275,11 @@ const WorkoutForm = () => {
 																									min={1}
 																									{...field}
 																								/>
-																								{meta.touched && meta.error && (
-																									<span className='text-red-500 text-xs'>
-																										{meta.error}
-																									</span>
-																								)}
+																								<ErrorMessage
+																									name={field.name}
+																									component='p'
+																									className='text-red-500 text-xs'
+																								/>
 																							</div>
 																						);
 																					}}
@@ -262,7 +289,7 @@ const WorkoutForm = () => {
 																				<Field
 																					name={`exercises.${index}.setDetails.${setIndex}.reps`}
 																				>
-																					{({ field, meta }: FieldProps) => {
+																					{({ field }: FieldProps) => {
 																						return (
 																							<div>
 																								<Input
@@ -272,11 +299,11 @@ const WorkoutForm = () => {
 																									min={1}
 																									{...field}
 																								/>
-																								{meta.touched && meta.error && (
-																									<span className='text-red-500 text-xs'>
-																										{meta.error}
-																									</span>
-																								)}
+																								<ErrorMessage
+																									name={field.name}
+																									component='p'
+																									className='text-red-500 text-xs'
+																								/>
 																							</div>
 																						);
 																					}}

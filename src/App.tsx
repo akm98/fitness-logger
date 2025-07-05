@@ -10,7 +10,7 @@ function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Home />
-			<Toaster />
+			<Toaster expand position='top-right' duration={3000} />
 			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
 	);
