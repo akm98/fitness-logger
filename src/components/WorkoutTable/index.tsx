@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { AgGridReact } from "ag-grid-react";
 import type { ColDef } from "ag-grid-community";
-import { WorkoutTableColumnDefs } from "@/utils/constants.ts";
+import { WorkoutTableColumnDefs } from "@/utils/Constants/index.ts";
 import { themeBalham } from "ag-grid-community";
 import { useQuery } from "@tanstack/react-query";
 import { getAllWorkoutData } from "@/services/index.ts";

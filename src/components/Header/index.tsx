@@ -1,12 +1,7 @@
-import {
-	SignedIn,
-	SignedOut,
-	SignInButton,
-	UserButton,
-} from "@clerk/clerk-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
 import Show, { Else, If } from "../Show";
+import Auth from "../Auth";
 
 type Props = {
 	showFitnessLog: boolean;
@@ -16,17 +11,11 @@ type Props = {
 const Header = (props: Props) => {
 	const { showFitnessLog, setShowFitnessLog } = props;
 	const { t } = useTranslation();
+
 	return (
 		<header className='flex flex-row-reverse items-center justify-end pt-4 px-4'>
 			<div id='auth'>
-				<SignedOut>
-					<SignInButton>
-						<Button variant={"outline"}>{t("sign_in")}</Button>
-					</SignInButton>
-				</SignedOut>
-				<SignedIn>
-					<UserButton />
-				</SignedIn>
+				<Auth />
 			</div>
 			<div className='flex items-center-safe justify-between w-full '>
 				<div className='px-2 '>

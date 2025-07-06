@@ -21,7 +21,7 @@ import {
 	exercisesOptions,
 	setOptions,
 	weightMetricOptions,
-} from "@/utils/constants";
+} from "@/utils/Constants/staticOptions";
 import type { SetData, WorkoutData } from "@/types/WorkoutTableTypes";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@clerk/clerk-react";
